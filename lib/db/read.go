@@ -8,9 +8,7 @@ import (
 	"strings"
 )
 
-var project = "jinz"
-
-func Read(query, environment, service string) ([]string, error) {
+func Read(query, project, environment, service string) ([]string, error) {
 	command := fmt.Sprintf("/bin/egrep '%s' ./db/%s-%s-%s-*.txt ", query, project, environment, service)
 	cmd := exec.Command("bash", "-c", command)
 	var stdout bytes.Buffer

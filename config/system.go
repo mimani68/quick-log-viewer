@@ -8,8 +8,9 @@ import (
 )
 
 type Config struct {
-	Host string `yaml:"host"`
-	Port string `yaml:"port"`
+	DefaultProject string `yaml:"default_project"`
+	Host           string `yaml:"host"`
+	Port           string `yaml:"port"`
 }
 
 func LoadConfig(filename string) (*Config, error) {

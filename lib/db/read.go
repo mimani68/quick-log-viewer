@@ -11,7 +11,7 @@ import (
 var project = "jinz"
 
 func Read(query, environment, service string) ([]string, error) {
-	command := fmt.Sprintf("/bin/egrep '%s' ./db/*.txt ", query)
+	command := fmt.Sprintf("/bin/egrep '%s' ./db/%s-%s-%s-*.txt ", query, project, environment, service)
 	cmd := exec.Command("bash", "-c", command)
 	var stdout bytes.Buffer
 	var stderr bytes.Buffer
@@ -20,7 +20,7 @@ func Read(query, environment, service string) ([]string, error) {
 	err := cmd.Run()
 	if err != nil {
 		// return stderr.String(), err
-		fmt.Println("Error")
+		fmt.Println("")
 	}
 	pattern := fmt.Sprintf("./db/%s-%s-%s-\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}.txt:", project, environment, service)
 	re := regexp.MustCompile(pattern)
